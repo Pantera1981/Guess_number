@@ -1,0 +1,31 @@
+#угадать случайное число
+from random import randint
+max_number = 10
+need_break = 'N'
+level_difficult = 1
+
+while True:
+    secret_number = randint(1, max_number*level_difficult)
+    print(f'Отгадай число от 1 до {max_number*level_difficult}, уровень сложности {level_difficult}')
+    user_number = 0
+    try_count = 0
+
+    while user_number != secret_number:
+        try_count += 1
+        user_number = int(input(f'{try_count}-я попытка: '))
+        if user_number > secret_number:
+            print('Много')
+        elif user_number < secret_number:
+            print('Мало')
+        else:
+            print(f'Правильно. Попытка {try_count}. Я загадал {secret_number}')
+
+    while True :
+        need_break = str(input (r"Подолжить (Y\N)?" )).upper() 
+        if need_break == 'N' or need_break == 'Y' : break
+    if need_break == 'N': break  
+    new_level_difficult = int(input(f'Выберите уровень сложности от 1 до 10. Текущий уровень {level_difficult}! : '))
+    
+    if new_level_difficult >= 1 or new_level_difficult <= 10:
+       level_difficult = new_level_difficult
+    print (f'Установлен уровень сложности {level_difficult}')
